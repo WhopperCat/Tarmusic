@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>conno.fun</title>
+  <meta name="description" content="A little corner of the internet by Conno." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B8%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <button id="info-button" class="info-button" aria-label="About" title="About">
+    <span aria-hidden="true">i</span>
+  </button>
+
+  <main class="container">
+    <header class="hero">
+      <h1 class="title">CONNO.FUN</h1>
+      <p class="tagline">a little corner of the internet</p>
+    </header>
+
+    <section class="projects" aria-label="Projects">
+      <p class="empty-state">new things are on the way.</p>
+    </section>
+  </main>
+
+  <div id="info-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="info-title" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card" role="document">
+      <button class="modal-close" data-close aria-label="Close">&times;</button>
+      <h2 id="info-title" class="modal-title">about</h2>
+      <div class="modal-body">
+        <!-- intentionally left empty for now -->
+      </div>
+    </div>
+  </div>
+
+  <script src="/script.js"></script>
+</body>
+</html>
