@@ -30,6 +30,33 @@ python3 app.py
 | `GET /api/lyrics/<videoId>` | structured `{format, lines:[{time,words:[{time,text}]}], source}` |
 | `GET /api/stream/<videoId>` | audio stream (with HTTP Range support) |
 
+## Deploy
+
+The app needs a real persistent Python server (not a serverless function — see below). The repo ships a `Dockerfile` that works anywhere.
+
+### Fly.io (recommended)
+
+```bash
+# one time
+brew install flyctl       # or: curl -L https://fly.io/install.sh | sh
+fly auth signup           # or: fly auth login
+
+# from the repo root
+fly launch --copy-config --no-deploy   # pick an app name, region; keeps fly.toml
+fly deploy
+fly open
+```
+
+`fly.toml` is preconfigured for a 512MB shared-cpu-1x machine in `iad` with auto-stop when idle (so it's effectively free for personal use). Bump memory if you see OOMs while many concurrent streams are active.
+
+### Render
+
+Push the repo to GitHub, then "New +" → "Blueprint" and point at the repo. `render.yaml` is included. Or create a Web Service manually with runtime "Docker" and the included `Dockerfile`.
+
+### Why not Netlify / Vercel / Cloudflare Workers?
+
+The `/api/stream` route holds a long-lived connection while it proxies audio through. Netlify Functions cap at 10s sync / 26s background, Vercel at 60s on Hobby — neither can stream a 3-minute song. The YouTube audio URL is also IP-bound to the resolver, so you can't just hand the URL to the browser. A persistent VM is required.
+
 ## Caveats
 
 - True per-word lyrics depend on the source. Most popular songs have line-level synced lyrics on LRCLIB/NetEase; word-level lyrics depend on Musixmatch Richsync being reachable. The renderer transparently uses whatever it gets.

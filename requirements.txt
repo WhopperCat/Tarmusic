@@ -3,3 +3,4 @@ ytmusicapi>=1.8.0
 yt-dlp>=2024.5.27
 requests>=2.32.0
 syncedlyrics>=1.0.1
+gunicorn>=22.0.0

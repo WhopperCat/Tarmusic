@@ -1,6 +1,7 @@
 """Tarmusic — a Flask web app wrapping ytmusicapi for browsing and playing YouTube Music."""
 from __future__ import annotations
 
+import os
 import re
 import time
 from functools import lru_cache
@@ -331,4 +332,4 @@ def api_stream(video_id: str):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
