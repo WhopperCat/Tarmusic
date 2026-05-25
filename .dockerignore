@@ -1,0 +1,11 @@
+.git
+.gitignore
+.venv
+venv
+__pycache__
+*.pyc
+.DS_Store
+*.log
+.env
+README.md
+fly.toml
