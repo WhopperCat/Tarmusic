@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tarmusic</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#" data-route="home">
+        <span class="brand-mark">▶</span> Tarmusic
+      </a>
+      <form id="search-form" class="search">
+        <input
+          id="search-input"
+          type="search"
+          placeholder="Search songs, artists, albums…"
+          autocomplete="off"
+        />
+        <select id="search-filter">
+          <option value="">All</option>
+          <option value="songs">Songs</option>
+          <option value="albums">Albums</option>
+          <option value="artists">Artists</option>
+          <option value="playlists">Playlists</option>
+          <option value="videos">Videos</option>
+        </select>
+        <button type="submit">Search</button>
+      </form>
+    </header>
+
+    <main id="main">
+      <section id="view"></section>
+      <aside id="lyrics-panel" class="hidden">
+        <div class="lyrics-head">
+          <strong>Lyrics</strong>
+          <span id="lyrics-mode" class="tag"></span>
+          <button id="lyrics-close" aria-label="close">×</button>
+        </div>
+        <div id="lyrics-body">
+          <div class="lyrics-status">Pick a song to see lyrics.</div>
+        </div>
+        <small id="lyrics-source"></small>
+      </aside>
+    </main>
+
+    <footer id="player">
+      <div class="np">
+        <img id="np-art" alt="" />
+        <div class="np-text">
+          <div id="np-title">Nothing playing</div>
+          <div id="np-artist"></div>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="btns">
+          <button id="btn-prev" title="Previous">⏮</button>
+          <button id="btn-play" title="Play/Pause">▶</button>
+          <button id="btn-next" title="Next">⏭</button>
+          <button id="btn-lyrics" title="Lyrics">📝</button>
+        </div>
+        <div class="seek">
+          <span id="t-cur">0:00</span>
+          <input id="seek" type="range" min="0" max="1000" value="0" />
+          <span id="t-dur">0:00</span>
+        </div>
+      </div>
+      <div class="volume">
+        <span>🔊</span>
+        <input id="volume" type="range" min="0" max="100" value="80" />
+      </div>
+      <audio id="audio" preload="none"></audio>
+    </footer>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>
